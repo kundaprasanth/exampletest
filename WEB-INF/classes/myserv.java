@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8" /><title>Source Code</title></head><body><pre>/*
+/*
 * Licensed to the Apache Software Foundation (ASF) under one or more
 * contributor license agreements.  See the NOTICE file distributed with
 * this work for additional information regarding copyright ownership.
@@ -14,27 +14,40 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ResourceBundle;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ServletToJsp extends HttpServlet {
+/**
+ * The simplest possible servlet.
+ *
+ * @author James Duncan Davidson
+ */
 
-    private static final long serialVersionUID = 1L;
+public class myserv extends HttpServlet {
+   
 
-    @Override
-    public void doGet (HttpServletRequest request,
-            HttpServletResponse response) {
+    public void doGet(HttpServletRequest request,
+                      HttpServletResponse response)
+        throws IOException, ServletException
+    {
+        
+        response.setContentType("text/html");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
 
-       try {
-           // Set the attribute and Forward to hello.jsp
-           request.setAttribute ("servletName", "servletToJsp");
-           getServletConfig().getServletContext().getRequestDispatcher(
-                   "/jsp/jsptoserv/hello.jsp").forward(request, response);
-       } catch (Exception ex) {
-           ex.printStackTrace ();
-       }
+        
+        
+        out.println("Hello World");
+
+        
     }
 }
-</pre></body></html>
+
+
+
